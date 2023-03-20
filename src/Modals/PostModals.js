@@ -51,7 +51,7 @@ function DashboardModal({openModal,closeModal}) {
           }}>
 
           </TextField>
-          <TextField required  label="Edit-Title" sx={{
+          <TextField required  label="Edit-Body" sx={{
             backgroundColor:'white',
             mt:3,
             borderRadius:'10px',
