@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "./Navbar"
-// import Posts from "./Posts"
+import Navbar from "./Navbar";
 function Dashboard() {
-    return (
-<>
-        <Navbar/>
-        </>
-    )
+  return (
+    <>
+      <Navbar />
+    </>
+  );
 }
 
 export default Dashboard;
