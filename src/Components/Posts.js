@@ -69,7 +69,6 @@ function Posts() {
                 </TableRow>
               ))}
           </TableBody>
-
           {modalOpen && (
             <PostModals
               openModal={handleModalOpen}
