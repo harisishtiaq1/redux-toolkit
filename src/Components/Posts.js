@@ -13,19 +13,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../Slice/PostsSlice";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PostModals from "../Modals/PostModals"
+import PostModals from "../Modals/PostModals";
 
 function Posts() {
   const { data, message } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
-const [modalOpen,setModalOpen]=useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
 
-const handleModalOpen=()=>{
-  setModalOpen(true)
-}
-const handleModalClose=()=>{
-  setModalOpen(false)
-}
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
   useEffect(() => {
     dispatch(getData()).unwrap();
   }, [dispatch]);
@@ -57,13 +57,9 @@ const handleModalClose=()=>{
                     {items.body.substring(0, 20)}
                   </TableCell>
                   <TableCell>
-                
-                    <IconButton
-                    onClick={()=>handleModalOpen()}
-                    >
+                    <IconButton onClick={() => handleModalOpen()}>
                       <EditIcon />
                     </IconButton>
-                    
                   </TableCell>
                   <TableCell>
                     <IconButton>
@@ -73,12 +69,13 @@ const handleModalClose=()=>{
                 </TableRow>
               ))}
           </TableBody>
-          
-          {
-            modalOpen && <PostModals openModal={handleModalOpen}
-            closeModal={handleModalClose} 
-          />
-          }
+
+          {modalOpen && (
+            <PostModals
+              openModal={handleModalOpen}
+              closeModal={handleModalClose}
+            />
+          )}
         </Table>
       </TableContainer>
     </>
