@@ -1,19 +1,22 @@
-import { AppBar, Toolbar, Typography } from '@mui/material'
-import React from 'react'
+import { AppBar, Toolbar, Typography } from "@mui/material";
+import React from "react";
+import Posts from "./Posts";
 
 function Navbar() {
   return (
+    <>
     <AppBar
-    sx={{
+      sx={{
         backgroundColor: "brown",
-      }}>
-        <Toolbar>
-            <Typography>
-                My Redux Task
-            </Typography>
-        </Toolbar>
+      }}
+    >
+      <Toolbar>
+        <Typography>My Redux Task</Typography>
+      </Toolbar>
     </AppBar>
-  )
+    <Posts/>
+    </>
+  );
 }
 
-export default Navbar
+export default Navbar;
