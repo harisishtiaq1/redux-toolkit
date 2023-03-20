@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../Slice/PostsSlice";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PostModals from "../Modals/PostModals"
 
 function Posts() {
   const { data, message } = useSelector((state) => state.postReducer);
