@@ -16,7 +16,7 @@ export const getData = createAsyncThunk("posts/getData", async () => {
 export const updateData = createAsyncThunk("updateData", async () => {
   try {
     const res = await axios.put(
-      `https://jsonplaceholder.typicode.com/posts/${id}`
+      `https://jsonplaceholder.typicode.com/posts/id`
     );
     console.log("res.data", res.data);
     return res.data;
@@ -35,6 +35,13 @@ const postSlice = createSlice({
     builder.addCase(getData.rejected, (state, action) => {
       state.message = "rejected";
     });
+    builder.addCase(updateData.fulfilled, (state, action) => {
+        console.log({ action });
+        state.data = action.payload;
+      });
+      builder.addCase(updateData.rejected, (state, action) => {
+        state.message = "rejected";
+      });
   },
 });
 
