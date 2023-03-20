@@ -5,6 +5,7 @@ import {
   Box,
   Paper,
   TextField,
+  Button,
 } from "@mui/material";
 
 const style = {
@@ -58,6 +59,12 @@ function DashboardModal({openModal,closeModal}) {
           }}>
 
           </TextField>
+          <Button variant="contained" sx={{mt:2,backgroundColor:'blueviolet',
+                "&:hover":{
+                    backgroundColor:'blueviolet'
+                }}}>
+            Submit
+          </Button>
         </Box>
       </Modal>
     </Paper>
