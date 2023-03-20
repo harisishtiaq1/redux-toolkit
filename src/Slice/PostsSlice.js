@@ -4,7 +4,6 @@ const initialState = {
   data: "",
   message: "",
 };
-
 export const getData = createAsyncThunk("posts/getData", async () => {
   try {
     const res = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
