@@ -8,7 +8,7 @@ import {
   TableBody,
   IconButton,
 } from "@mui/material";
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getData } from "../Slice/PostsSlice";
 import EditIcon from "@mui/icons-material/Edit";
@@ -18,7 +18,14 @@ import PostModals from "../Modals/PostModals"
 function Posts() {
   const { data, message } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
+const [modalOpen,setModalOpen]=useState(false)
 
+const handleModalOpen=()=>{
+  setModalOpen(true)
+}
+const handleModalClose=()=>{
+  setModalOpen(false)
+}
   useEffect(() => {
     dispatch(getData()).unwrap();
   }, [dispatch]);
@@ -50,9 +57,13 @@ function Posts() {
                     {items.body.substring(0, 20)}
                   </TableCell>
                   <TableCell>
-                    <IconButton>
+                
+                    <IconButton
+                    onClick={()=>handleModalOpen()}
+                    >
                       <EditIcon />
                     </IconButton>
+                    
                   </TableCell>
                   <TableCell>
                     <IconButton>
@@ -62,6 +73,12 @@ function Posts() {
                 </TableRow>
               ))}
           </TableBody>
+          
+          {
+            modalOpen && <PostModals openModal={handleModalOpen}
+            closeModal={handleModalClose} 
+          />
+          }
         </Table>
       </TableContainer>
     </>
