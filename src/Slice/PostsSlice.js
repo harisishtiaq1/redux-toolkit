@@ -36,12 +36,12 @@ const postSlice = createSlice({
       state.message = "rejected";
     });
     builder.addCase(updateData.fulfilled, (state, action) => {
-        console.log({ action });
-        state.data = action.payload;
-      });
-      builder.addCase(updateData.rejected, (state, action) => {
-        state.message = "rejected";
-      });
+      console.log({ action });
+      state.data = action.payload;
+    });
+    builder.addCase(updateData.rejected, (state, action) => {
+      state.message = "rejected";
+    });
   },
 });
 
