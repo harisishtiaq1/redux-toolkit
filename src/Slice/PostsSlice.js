@@ -13,6 +13,17 @@ export const getData = createAsyncThunk("posts/getData", async () => {
     throw error;
   }
 });
+export const updateData = createAsyncThunk("updateData", async () => {
+  try {
+    const res = await axios.put(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    console.log("res.data", res.data);
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+});
 const postSlice = createSlice({
   name: "posts",
   initialState,
