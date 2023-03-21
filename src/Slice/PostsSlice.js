@@ -13,21 +13,6 @@ export const getData = createAsyncThunk("posts/getData", async () => {
     throw error;
   }
 });
-export const updateData = createAsyncThunk("updateData", async () => {
-  try {
-    const res = await axios.put(
-      `https://jsonplaceholder.typicode.com/posts/${id}`,
-      {
-        title: title,
-        body: body,
-      }
-    );
-    console.log("res.data", res.data);
-    return res.data;
-  } catch (error) {
-    throw error;
-  }
-});
 const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -37,13 +22,6 @@ const postSlice = createSlice({
       state.data = action.payload;
     });
     builder.addCase(getData.rejected, (state, action) => {
-      state.message = "rejected";
-    });
-    builder.addCase(updateData.fulfilled, (state, action) => {
-      console.log({ action });
-      state.data = action.payload;
-    });
-    builder.addCase(updateData.rejected, (state, action) => {
       state.message = "rejected";
     });
   },

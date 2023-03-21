@@ -18,16 +18,15 @@ import PostModals from "../Modals/PostModals";
 function Posts() {
   const { data, message } = useSelector((state) => state.postReducer);
   const dispatch = useDispatch();
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleModalOpen = () => {
-    setModalOpen(true);
+  const [modalOpen, setModalOpen] = useState(null);
+  const handleModalOpen = (id) => {
+      setModalOpen(id);
   };
   const handleModalClose = () => {
     setModalOpen(false);
   };
   useEffect(() => {
-    dispatch(getData()).unwrap();
+    dispatch(getData());
   }, [dispatch]);
   return (
     <>
@@ -45,7 +44,7 @@ function Posts() {
           </TableHead>
           <TableBody>
             {data &&
-              data.map((items) => (
+              data.map((items,index) => (
                 <TableRow>
                   <TableCell component="th" scope="row">
                     {items.id}
@@ -57,7 +56,7 @@ function Posts() {
                     {items.body.substring(0, 20)}
                   </TableCell>
                   <TableCell>
-                    <IconButton onClick={() => handleModalOpen()}>
+                    <IconButton onClick={() => handleModalOpen(items.id)}>
                       <EditIcon />
                     </IconButton>
                   </TableCell>
@@ -71,6 +70,7 @@ function Posts() {
           </TableBody>
           {modalOpen && (
             <PostModals
+              data={modalOpen}
               openModal={handleModalOpen}
               closeModal={handleModalClose}
             />
