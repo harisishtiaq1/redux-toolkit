@@ -4,6 +4,7 @@ import { Typography, Box, Paper, TextField, Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { updatePost } from "../Slice/EditSlice";
 import { toast } from "react-hot-toast";
+import { getData } from "../Slice/PostsSlice";
 import axios from "axios";
 const style = {
   position: "absolute",
@@ -55,7 +56,6 @@ function DashboardModal({ openModal, closeModal, data }) {
       return toast.error("Body is required");
     }
   };
-
   return (
     <Paper
       sx={{
