@@ -22,7 +22,6 @@ const style = {
   flexDirection: "column",
 };
 function DashboardModal({ openModal, closeModal, data }) {
-  console.log("data", data);
   const [title, setTitle] = useState(data.title);
   const [body, setBody] = useState(data.body);
   const dispatch = useDispatch();
@@ -32,6 +31,7 @@ function DashboardModal({ openModal, closeModal, data }) {
       .get(`https://jsonplaceholder.typicode.com/posts/${data}`)
       .then((response) => {
         setShowData(response.data);
+        console.log({setShowData});
       });
   }, []);
   const handleSubmit = (event) => {
