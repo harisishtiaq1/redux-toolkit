@@ -22,25 +22,35 @@ const style = {
   flexDirection: "column",
 };
 function DashboardModal({ openModal, closeModal, data }) {
-  const [title, setTitle] = useState(data.title);
-  const [body, setBody] = useState(data.body);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const dispatch = useDispatch();
-  const [showData, setShowData] = useState();
+  const [showData, setShowData] = useState(null);
   useEffect(() => {
     axios
       .get(`https://jsonplaceholder.typicode.com/posts/${data}`)
       .then((response) => {
         setShowData(response.data);
-        console.log({setShowData});
       });
   }, []);
+  useEffect(() => {
+    if (showData !== null) setTitle(showData?.title);
+  }, [showData]);
+  useEffect(() => {
+    if (showData !== null) setBody(showData?.body);
+  }, [showData]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const postData = { title, body };
     dispatch(updatePost({ id: data.id, postData }));
-    console.log({ postData });
     if (postData) {
       return toast.success("Data Updated");
+    }
+    if (!title) {
+      return toast.error("Title is required");
+    }
+    if (!body) {
+      return toast.error("Body is required");
     }
   };
   return (
@@ -56,48 +66,48 @@ function DashboardModal({ openModal, closeModal, data }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Edit
-          </Typography>
-          <TextField
-            required
-            sx={{
-              backgroundColor: "white",
-              mt: 3,
-              borderRadius: "10px",
-              width:'300px'
-            }}
-            value={showData?.title.substring(0,15)}
-            onChange={(event) => setTitle(event.target.value)}
-          >
-          </TextField>
-          <TextField
-            required
-            sx={{
-              backgroundColor: "white",
-              mt: 3,
-              borderRadius: "10px",
-              width:'300px'
-            }}
-            value={showData?.body.substring(0,20)}
-            onChange={(event) => setBody(event.target.value)}
-          >
-          </TextField>
-          <Button
-            variant="contained"
-            sx={{
-              mt: 2,
-              backgroundColor: "blueviolet",
-              "&:hover": {
+        <form>
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Edit
+            </Typography>
+            <TextField
+              required
+              sx={{
+                backgroundColor: "white",
+                mt: 3,
+                borderRadius: "10px",
+                width: "300px",
+              }}
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            ></TextField>
+            <TextField
+              required
+              sx={{
+                backgroundColor: "white",
+                mt: 3,
+                borderRadius: "10px",
+                width: "300px",
+              }}
+              value={body}
+              onChange={(event) => setBody(event.target.value)}
+            ></TextField>
+            <Button
+              variant="contained"
+              sx={{
+                mt: 2,
                 backgroundColor: "blueviolet",
-              },
-            }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-        </Box>
+                "&:hover": {
+                  backgroundColor: "blueviolet",
+                },
+              }}
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </Box>
+        </form>
       </Modal>
     </Paper>
   );

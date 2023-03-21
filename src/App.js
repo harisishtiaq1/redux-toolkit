@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <Toaster />
-      <Dashboard />;
+      <Dashboard />
     </>
   );
 }

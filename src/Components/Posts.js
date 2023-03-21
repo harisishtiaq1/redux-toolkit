@@ -20,7 +20,7 @@ function Posts() {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(null);
   const handleModalOpen = (id) => {
-      setModalOpen(id);
+    setModalOpen(id);
   };
   const handleModalClose = () => {
     setModalOpen(false);
@@ -44,7 +44,7 @@ function Posts() {
           </TableHead>
           <TableBody>
             {data &&
-              data.map((items,index) => (
+              data.map((items, index) => (
                 <TableRow>
                   <TableCell component="th" scope="row">
                     {items.id}

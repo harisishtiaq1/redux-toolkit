@@ -5,16 +5,16 @@ import Posts from "./Posts";
 function Navbar() {
   return (
     <>
-    <AppBar
-      sx={{
-        backgroundColor: "brown",
-      }}
-    >
-      <Toolbar>
-        <Typography>My Redux Task</Typography>
-      </Toolbar>
-    </AppBar>
-    <Posts/>
+      <AppBar
+        sx={{
+          backgroundColor: "brown",
+        }}
+      >
+        <Toolbar>
+          <Typography>My Redux Task</Typography>
+        </Toolbar>
+      </AppBar>
+      <Posts />
     </>
   );
 }
