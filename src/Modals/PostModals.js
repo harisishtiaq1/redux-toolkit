@@ -42,6 +42,8 @@ function DashboardModal({ openModal, closeModal, data }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const postData = { title, body };
+    console.log("title", title);
+    console.log("body", body);
     dispatch(updatePost({ id: data.id, postData }));
     if (postData) {
       return toast.success("Data Updated");
@@ -53,6 +55,7 @@ function DashboardModal({ openModal, closeModal, data }) {
       return toast.error("Body is required");
     }
   };
+
   return (
     <Paper
       sx={{
